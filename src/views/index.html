@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDE | Grau de Deterioração das Estruturas (Versão BETA 1.0.0)</title>
+
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/forms.css">
+    <link rel="stylesheet" href="/styles/page-gde.css">
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet">
+
+
+    <script src="/scripts/addField.js" defer></script>
+    <script src="/scripts/gde.js" defer></script>
+    <script src="/scripts/addFloorsNumbers.js" defer></script>
+    
+</head>
+<body id="page-gde">
+
+    <div id="container">
+        <header class="page-header">
+           <div class="top-bar-container">
+                <a href="/">
+                    Como usar?
+                </a>
+                <a href="/">
+                    Sobre nós
+                </a>
+            </div>
+
+            <div class="header-content">
+                <strong>Metodologia GDE (Versão BETA 1.0.0)</strong>
+                <p>Descubra o Grau de Deterioração da sua Estrutura.</p>
+                <p>Metodologia criada por Eliane Kraus de Castro e atualizada por Régis Pamponet da Fonseca.</p>
+           </div>
+        </header>
+
+        <main>
+            <form target="_blank" action="/table" id="create-analysis"  method="">
+                <fieldset>
+                    <legend>Dados da Edificação</legend>
+
+                    <div class="input-block">
+                        <label for="name">Nome da Edificação</label>
+                        <input name="name" id="name" required> 
+                    </div>
+
+                    <div class="input-block">
+                        <label for="location">Localização</label>
+                        <input name="location" id="location" required> 
+                    </div>
+
+                    <div class="input-block">
+                        <label for="age">Idade da Edificação</label>
+                        <input name="age" id="age" required> 
+                    </div>
+
+                    <div class="input-block">
+                        <label for="date">Data da Inspeção</label>
+                        <input name="date" id="date" type="date" required> 
+                    </div>
+
+                    <div class="input-block">
+                        <label for="nature-use">Natureza de Uso</label>
+                        <input name="nature-use" id="nature-use" required> 
+                    </div>
+
+                    <div class="input-block">
+                        <label for="bulding-area">Área Construída (m²)</label>
+                        <input name="bulding-area" id="bulding-area" type="number" required> 
+                    </div>
+
+                    <div class="input-block">
+                        <label for="number-floors">Número de Pavimentos</label>
+                        <input name="number-floors" id="number-floors" type="number" required> 
+                    </div>
+
+                    <div class="textarea-block">
+                        <label for="notes">Observações</label>
+                        <textarea name="notes" id="notes" ></textarea>
+                    </div> 
+
+                </fieldset>
+
+
+                <fieldset id="schedule-items">
+                    <legend>Dados dos Elementos
+                        <button type="button" id="add-element">+ Novo Elemento</button>
+                    </legend>
+
+                    <div class="schedule-item">
+
+                        <div class="select-block">
+                            <label for="type-name">Tipo</label>
+                            <select name="type-name" id="type-name" required>
+                                <option value="">Selecione uma opção</option>
+                                <option value="viga">Viga</option>
+                                <option value="pilar">Pilar</option>
+                                <option value="laje">Laje</option>
+                                <option value="escada-rampas">Escadas/Rampas</option>
+                                <option value="muro-arrimo">Cortinas (Muros de Arrimo)</option>
+                                <option value="reservatorio">Reservatórios - Superior e Inferior</option>
+                                <option value="fundacao">Fundações</option>
+                                <option value="junta-dilatacao">Juntas de Dilatação</option>
+                                <option value="composicao-arq">Elementos de Composição Arquitetônica</option>
+                            </select>
+                        </div>
+
+                        <div class="input-block">
+                            <label for="number-element">Nº do Elemento</label>
+                            <input name="number-element" id="number-element" placeholder="Apenas Números" type="number" min="1" required> 
+                        </div>
+   
+                        <div class="select-block">
+                            <label for="fp-element">Fator de Ponderação</label>
+                            <select name="fp-element" id="fp" required>
+                                <option value="">Selecione uma opção</option>
+                            </select>
+                        </div>
+
+                        <div class="select-block">
+                            <label for="fi">Fator de Intensidade</label>
+                            <select name="fi" id="fi" required>
+                                <option value="">Selecione uma opção</option>
+                                <option value="0">Sem lesões</option>
+                                <option value="1">Lesões Leves</option>
+                                <option value="2">Lesões Toleráveis</option>
+                                <option value="3">Lesões Graves</option>
+                                <option value="4">Estado Crítico</option>
+                            </select>
+                        </div>
+
+                        <div class="select-block">
+                            <label for="n-floor">Pavimento</label>
+                            <select name="n-floor" id="n-floor" required>
+                                <option value="">Selecione uma opção</option>
+                            </select>
+                        </div>
+
+                        <div class="select-block">
+                            <label for="fr">Fator de Relevância</label>
+                            <select name="fr" id="fr" required>
+                                <option value="">Selecione uma opção</option>
+                                <option value="1">Elementos de composição arquitetônica</option>
+                                <option value="2">Reservatório superior</option>
+                                <option value="3">Escadas/rampas, reservatório inferior, cortinas, lajes secundárias, juntas de
+                                    dilatação</option>
+                                <option value="4">Lajes, fundações, vigas secundárias, pilares secundários</option>
+                                <option value="5">Vigas e pilares principais</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    
+                </fieldset>
+            </form>
+
+            <footer>
+                <p>
+                    <img src="/images/warning.svg" alt="Aviso importante">
+                    Importante! <br> Preencha todos os dados
+                </p>
+                <a target="_blank" href="/table"><button type="submit" form="create-analysis" class="calculate">Calcular</button></a>
+            </footer>
+        </main>
+    </div>
+
+    
+</body>
+</html>
