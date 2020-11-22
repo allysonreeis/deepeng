@@ -1035,16 +1035,22 @@ function makeData () {
      
     if (umElemento.gde >= 0 && umElemento.gde < 15) {
       var NivelDeDeterioracaoGde = 'Baixo'
+      var AcaoASerAdotadaGde = 'Estado aceitável. Manutenção preventiva.'
     } else if (umElemento.gde >= 15 && umElemento.gde < 50) {
       var NivelDeDeterioracaoGde = 'Médio'
+      var AcaoASerAdotadaGde = 'Definir prazo/natureza para nova inspeção. Planejar intervenção em longo prazo (máx. 2 anos).'
     } else if (umElemento.gde >= 50 && umElemento.gde < 80) {
-      var NivelDeDeterioracaoGde = 'Alto'     
+      var NivelDeDeterioracaoGde = 'Alto'
+      var AcaoASerAdotadaGde = 'Definir prazo/natureza para inspeção especializada detalhada. Planejar intervenção em médio prazo (máx. 1 ano).'
     } else if (umElemento.gde >= 80 && umElemento.gde < 100) {
-      var NivelDeDeterioracaoGde = 'Sofrível'      
+      var NivelDeDeterioracaoGde = 'Sofrível'
+      var AcaoASerAdotadaGde = 'Definir prazo/natureza para inspeção especializada detalhada. Planejar intervenção em curto prazo (máx. 6 meses).'      
     } else if (umElemento.gde >= 100) {
       var NivelDeDeterioracaoGde = 'Crítico'
+      var AcaoASerAdotadaGde = 'Inspeção especial emergencial. Planejar intervenção imediata.'
     } else {
       var NivelDeDeterioracaoGde = ''
+      var AcaoASerAdotadaGde = ''
     }
 
     var grauDeDanoMaximoDaEstrutura = umElemento.gdeMax
@@ -1078,6 +1084,7 @@ function makeData () {
       GrauDeDanoMaximo,
       GDE,
       NivelDeDeterioracaoGde,
+      AcaoASerAdotadaGde,
       grauDeDanoMaximoDaEstrutura,
       gdf,
       gd,
