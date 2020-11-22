@@ -170,3 +170,7 @@
     margin: 0;
     font-weight: bold;
 }
+
+.button-calc {
+    text-decoration: none;
+}
