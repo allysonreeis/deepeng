@@ -654,7 +654,6 @@ function calculateGDano () {
     */
     let groupOfElements = agruparPor(group, 'id');
     let listaDeChaves = Object.keys(groupOfElements);
-    //console.log(groupOfElements)
 
     var valor = 0;
     var numeros = [];
@@ -664,7 +663,7 @@ function calculateGDano () {
           valor = valor + b.gd;
         }
       })
-      //console.log(`Somatorio de ${chave}: ${valor}`);
+      
       numeros.push({tipo: chave, somatorioGd: valor});
       listaDeElementos.forEach((e)=>{
         numeros.forEach((n)=> {
@@ -676,16 +675,12 @@ function calculateGDano () {
       valor = 0;
     })
     /********************************************************/
-    // console.log('numerros')
-    // console.log(numeros)
     //calculaGde(numeros, listaDeDadosGlobais, groupOfElements);
     listaDeDadosGlobais = listaDeElementos;
     gdMaximo(groupOfElements);
 
   })
   calculaGde(listaDeDadosGlobais);
-  // console.log('CalculateGd');
-  // console.table(listaDeDadosGlobais);
 }
 
 
@@ -705,12 +700,6 @@ body.addEventListener('click', (e) => {
     fillOptions(typeNameSel.value, fpElement);
 
   }
-  // calculateGDano();
-  // calcSomatorioGDE();
-  // calculaGdf();
-  // calculateGD();
-  // makeData();
-  // exibeDados(listaDeDadosGlobais);
 });
 
 body.addEventListener('dblclick', (e) => {
@@ -725,7 +714,7 @@ body.addEventListener('dblclick', (e) => {
 function calcSomatorio () {
   let groupOfElements = agruparPor(group, 'id');
   let lista = Object.keys(groupOfElements);
-  //console.clear();
+  
   var valor = 0;
 
   lista.forEach((chave)=>{
@@ -734,7 +723,7 @@ function calcSomatorio () {
         valor = valor + b.gd;
       }
     })
-    //console.log(`Somatorio de ${chave}: ${valor}`);
+    
     valor = 0;
   })
 }
@@ -761,12 +750,9 @@ function calculaGde (dadosG) {
 
   var tempArray = []
 
-  var total = 0;
-
   for (var gp1 in gpDadosG) {
     var x = gpDadosG[gp1];
     for (let i = 0; i < x.length; i++) {
-      //console.log(`O valor maximo de ${x[0].id} é ${x[0].gdMax}. Seu nomatorio é ${x[0].somatorioGd}`);
       var gdeResultado = x[0].gdMax*(1+((x[0].somatorioGd - x[0].gdMax)/(x[0].somatorioGd)))
       tempArray.push({tipo: x[0].id, gde: gdeResultado})
       break;
@@ -813,8 +799,6 @@ function calculaGdf () {
     e['gdf'] = e.gdeMax*(Math.sqrt(1+((e.somatorioDoGde-e.gdeMax)/e.somatorioDoGde)))
   })
 
-  //console.table(arrayTemporario)
-
   arrayTemporario.forEach((umElemento)=>{
     listaDeDadosGlobais.forEach((umDado)=>{
       if (umDado.typeOfElement == umElemento.tipo) {
@@ -827,13 +811,11 @@ function calculaGdf () {
 function calcSomatorioGDE () {
   let groupOfElements = agruparPor(listaDeDadosGlobais, 'typeOfElement');
   let groupOfElementsById = agruparPor(listaDeDadosGlobais, 'id');
-  let listaById = Object.keys(groupOfElementsById);
   let lista = Object.keys(groupOfElements);
 
   var valor = 0;
   var numeros = [];
   var arrayTemporario = [];
-  var total = 0;
 
   for (const keyType in groupOfElements) {
     for (const keyId in groupOfElementsById) {
@@ -923,8 +905,6 @@ function gdMaximo (grupo) {
 
 function gdeMaximo (grupo) {
   var tempArray = []
-
-  var total = 0;
 
   for (var gp in grupo) {
     var maior = 0, menor = 0;
@@ -1038,7 +1018,6 @@ function calculateGD () {
 
 function makeData () {
   var tempArray = [];
-  var tempArray2 = [];
   
   //Remove duplicatas
   tempArray = listaDeDadosGlobais.filter((thing, index, self) =>
@@ -1046,9 +1025,6 @@ function makeData () {
       t.id === thing.id && t.gdf === thing.gdf
     ))
   )
-
-  //console.log('--------ARRAY FINAL--------')
-  //console.table(tempArray)
   
   tempArray.forEach((umElemento)=>{
     var Elemento = umElemento.id;
@@ -1110,8 +1086,6 @@ function makeData () {
     })
   })
   
-  //console.log('--------FINAL organizado--------')
-  //console.table(tableList)
   tableListExport = tableList
   tableList = []
 }
@@ -1119,10 +1093,6 @@ function makeData () {
 function exibeDados (dados) {
   console.clear()
   console.table(dados)
-
-  //Aramazena as informações no localStorage
-  
-  //sessionStorage.setItem('dadosGDE', dadosJson)
 }
 
 var buttonSubmit = document.querySelector('.calculate')
